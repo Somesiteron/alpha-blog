@@ -4,15 +4,28 @@ class ArtisController < ApplicationController
     @arti = Arti.new
   end
   def create
-    #render plain: params[:arti].inspect
+    
     @arti = Arti.new(article_params)
-    @arti.save
+    if @arti.save
+      flash[:notice] = "Article was successfully created"
+      redirect_to arti_path(@arti)
+    else
+      render 'new'
+    end
+    #redirect_to arti_path(@arti)
+  end
+
+  def show
+
+    @arti = Arti.find(params[:id])
+
   end
 
   private
     def article_params
       params.require(:arti).permit(:title, :descripion)
     end
+
 
 
 end 

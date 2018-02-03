@@ -1,5 +1,16 @@
 <h1> Inside Create article</h1>
 
+<% if @arti.errors.any? %>
+<h2> The following error prevented from creating the article </h2>
+<ul>
+<% @arti.errors.full_messages.each do |msg| %>
+
+<li> <%= msg %> </li>
+<% end %>
+</ul>
+<% end %>
+
+
 <%= form_for @arti do |f| %>
   <p>
     <%= f.label :title %>
